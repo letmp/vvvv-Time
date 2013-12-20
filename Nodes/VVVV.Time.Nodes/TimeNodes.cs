@@ -473,7 +473,7 @@ namespace VVVV.Time
         #endregion fields & pins
         public void Evaluate(int SpreadMax)
         {
-            FTimeSpan.SliceCount = SpreadMax;
+            FDay.SliceCount = FHour.SliceCount = FMinute.SliceCount = FSecond.SliceCount = FMilli.SliceCount = SpreadMax;
 
             for (int i = 0; i < SpreadMax; i++)
             {
