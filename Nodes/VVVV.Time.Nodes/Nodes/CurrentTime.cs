@@ -2,7 +2,6 @@
 
 using System;
 using System.ComponentModel.Composition;
-using Time.Core;
 using VVVV.Core.Logging;
 using VVVV.Packs.Time;
 using VVVV.PluginInterfaces.V2;
@@ -13,13 +12,13 @@ namespace Time.Nodes
 {
 
     #region PluginInfo
-    [PluginInfo(Name = "CurrentTime", Category = "Time", Help = "Outputs the current time.", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "CurrentTime", Category = "Time", Help = "Outputs the current time.", Tags = "Now", Author = "tmp")]
     #endregion PluginInfo
     public class CurrentTimeNode : IPluginEvaluate
     {
         #region fields & pins
         [Output("Time")]
-        public ISpread<DateTimeWithZone> FOutput;
+        public ISpread<VVVV.Packs.Time.Time> FOutput;
 
         [Output("Daylight Saving Time")]
         public ISpread<bool> FDaylightSavingTime;
@@ -31,9 +30,9 @@ namespace Time.Nodes
         public void Evaluate(int SpreadMax)
         {
             FOutput.SliceCount = FDaylightSavingTime.SliceCount = 1;
-            var dtwz = new DateTimeWithZone(DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified), TimeZoneInfo.Local);
+            var dtwz = new VVVV.Packs.Time.Time(DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified), TimeZoneInfo.Local);
             FOutput[0] = dtwz;
-            FDaylightSavingTime[0] = dtwz.TimeInOriginalZone.IsDaylightSavingTime();
+            FDaylightSavingTime[0] = dtwz.ZoneTime.IsDaylightSavingTime();
         }
     }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
-   <PATCH nodename="C:\Users\Anwender\Dropbox\Public\countdown.v4p" systemname="countdown" filename="C:\Users\Anwender\Desktop\countdown.v4p">
-   <BOUNDS type="Window" left="9900" top="5100" width="9000" height="6000">
+   <PATCH nodename="C:\dev\vvvv\vvvv-Time\countdown.v4p" systemname="countdown" filename="C:\Users\Anwender\Desktop\countdown.v4p">
+   <BOUNDS type="Window" left="9900" top="0" width="15465" height="15480">
    </BOUNDS>
    <NODE systemname="CurrentTime (Time)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\Time.dll" nodename="CurrentTime (Time)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="5280" top="1140" width="100" height="100">
@@ -179,6 +179,8 @@
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="102">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="13" srcpinname="Timezone" dstnodeid="15" dstpinname="Input String" linkstyle="VHV">
    <LINKPOINT x="3860" y="4495">
@@ -192,6 +194,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    <PIN pinname=".. To [" slicecount="1" visible="1" values="102">
+   </PIN>
+   <PIN pinname="[ From .." slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="16" srcpinname="Output" dstnodeid="9" dstpinname="Ord Value" hiddenwhenlocked="1">
@@ -467,5 +471,57 @@
    </LINKPOINT>
    <LINKPOINT x="8640" y="2603">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="57">
+   <BOUNDS type="Node" left="6516" top="22824" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Intersperse" slicecount="1" values="CarriageReturnLineFeed">
+   </PIN>
+   <PIN pinname="Intersperse String" slicecount="1" visible="1" values="|,|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="58" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="6348" top="23496" width="3900" height="3048">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6348" top="23496" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="57" srcpinname="Output" dstnodeid="58" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="61" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="8496" top="22020" width="687" height="240">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8496" top="22020" width="687" height="240">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|, &cr;&lf;|">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="61" srcpinname="Output String" dstnodeid="57" dstpinname="Intersperse String">
+   </LINK>
+   <NODE systemname="Quote (String)" nodename="Quote (String)" componentmode="Hidden" id="62">
+   <BOUNDS type="Node" left="6036" top="22080" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="62" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Output" dstnodeid="57" dstpinname="Input">
    </LINK>
    </PATCH>

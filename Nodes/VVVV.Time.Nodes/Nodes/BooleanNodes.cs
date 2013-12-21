@@ -1,5 +1,4 @@
 ﻿using System;
-using Time.Core;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Packs.Time;
 
@@ -13,12 +12,12 @@ namespace VVVV.Packs.Time.Nodes
     {
         #region fields & pins
         [Input("Time 1")]
-        public ISpread<DateTimeWithZone> FInput1;
+        public ISpread<Time> FInput1;
 
         [Input("Time 2")]
-        public ISpread<DateTimeWithZone> FInput2;
+        public ISpread<Time> FInput2;
 
-        [Input("Epsilon (TimeSpan)")]
+        [Input("Epsilon")]
         public ISpread<TimeSpan> FEpsilon;
 
         [Output("Output")]
@@ -40,16 +39,16 @@ namespace VVVV.Packs.Time.Nodes
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "GT", Category = "Time", Help = "Compares two times and returns 1 if time1 is gt time2.", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "GT", Category = "Time", Help = "Compares two Times and returns 1 if time1 is gt time2.", Tags = "", Author = "tmp")]
     #endregion PluginInfo
     public class AfterTimeNode : IPluginEvaluate
     {
         #region fields & pins
         [Input("Time 1")]
-        public ISpread<DateTimeWithZone> FInput1;
+        public ISpread<Time> FInput1;
 
         [Input("Time 2")]
-        public ISpread<DateTimeWithZone> FInput2;
+        public ISpread<Time> FInput2;
 
         [Output("Output")]
         public ISpread<bool> FOutput;
@@ -60,9 +59,7 @@ namespace VVVV.Packs.Time.Nodes
             FOutput.SliceCount = SpreadMax;
             for (int i = 0; i < SpreadMax; i++)
             {
-                if (FInput1[i].UniversalTime.CompareTo(FInput2[i].UniversalTime) > 0)
-                    FOutput[i] = true;
-                else FOutput[i] = false;
+                FOutput[i] = FInput1[i] > FInput2[i];
             }
         }
     }
@@ -74,10 +71,10 @@ namespace VVVV.Packs.Time.Nodes
     {
         #region fields & pins
         [Input("Time 1")]
-        public ISpread<DateTimeWithZone> FInput1;
+        public ISpread<Time> FInput1;
 
         [Input("Time 2")]
-        public ISpread<DateTimeWithZone> FInput2;
+        public ISpread<Time> FInput2;
 
         [Output("Output")]
         public ISpread<bool> FOutput;
@@ -88,9 +85,7 @@ namespace VVVV.Packs.Time.Nodes
             FOutput.SliceCount = SpreadMax;
             for (int i = 0; i < SpreadMax; i++)
             {
-                if (FInput1[i].UniversalTime.CompareTo(FInput2[i].UniversalTime) < 0)
-                    FOutput[i] = true;
-                else FOutput[i] = false;
+                FOutput[i] = FInput1[i] < FInput2[i];
             }
         }
     }

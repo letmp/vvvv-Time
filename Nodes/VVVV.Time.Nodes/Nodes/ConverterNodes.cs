@@ -24,7 +24,7 @@ namespace VVVV.Packs.Time.Nodes
         public ISpread<string> FFormat;
 
         [Output("Time")]
-        public ISpread<DateTimeWithZone> FOutput;
+        public ISpread<Time> FOutput;
 
         [Output("Success")]
         public ISpread<Boolean> FSuccess;
@@ -37,9 +37,7 @@ namespace VVVV.Packs.Time.Nodes
         [ImportingConstructor]
         public AsTimeStringNode()
         {
-            var timezones = new List<string>();
-            foreach (TimeZoneInfo z in TimeZoneInfo.GetSystemTimeZones()) timezones.Add(z.Id);
-            EnumManager.UpdateEnum("TimezoneEnum", "UTC", timezones.ToArray());
+            TimeZoneManager.Update();
         }
 
         public void Evaluate(int SpreadMax)
@@ -54,14 +52,14 @@ namespace VVVV.Packs.Time.Nodes
                     {
                         var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimeZone[i]);
                         DateTime dt = DateTime.ParseExact(FInput[i], FFormat[i], null);
-                        var dtwz = new DateTimeWithZone(dt, tz);
+                        var dtwz = new Time(dt, tz);
                         FOutput[i] = dtwz;
                         FSuccess[i] = true;
                     }
                     catch (Exception e)
                     {
                         FLogger.Log(LogType.Debug, e.ToString());
-                        FOutput[i] = new DateTimeWithZone(DateTime.MinValue, TimeZoneInfo.Utc);
+                        FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
                         FSuccess[i] = false;
                     }
                 }
@@ -82,7 +80,7 @@ namespace VVVV.Packs.Time.Nodes
         public IDiffSpread<EnumEntry> FTimeZone;
 
         [Output("Time")]
-        public ISpread<DateTimeWithZone> FOutput;
+        public ISpread<Time> FOutput;
 
         [Output("Success")]
         public ISpread<Boolean> FSuccess;
@@ -95,9 +93,7 @@ namespace VVVV.Packs.Time.Nodes
         [ImportingConstructor]
         public AsTimeValueNode()
         {
-            var timezones = new List<string>();
-            foreach (TimeZoneInfo z in TimeZoneInfo.GetSystemTimeZones()) timezones.Add(z.Id);
-            EnumManager.UpdateEnum("TimezoneEnum", "UTC", timezones.ToArray());
+            TimeZoneManager.Update();
         }
 
         public void Evaluate(int SpreadMax)
@@ -111,14 +107,14 @@ namespace VVVV.Packs.Time.Nodes
                 {
                     var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimeZone[i]);
                     DateTime dt = DateTime.FromOADate(FInput[i]);
-                    var dtwz = new DateTimeWithZone(dt, tz);
+                    var dtwz = new Time(dt, tz);
                     FOutput[i] = dtwz;
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
                 {
                     FLogger.Log(LogType.Debug, e.ToString());
-                    FOutput[i] = new DateTimeWithZone(DateTime.MinValue, TimeZoneInfo.Utc);
+                    FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
                     FSuccess[i] = false;
                 }
             }
@@ -149,7 +145,7 @@ namespace VVVV.Packs.Time.Nodes
     {
         #region fields & pins
         [Input("Time")]
-        public ISpread<DateTimeWithZone> FInput;
+        public ISpread<Time> FInput;
 
         [Input("Format", DefaultString = "yyyy'/'MM'/'dd-H:mm:ss")]
         public ISpread<string> FFormat;
@@ -172,7 +168,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    FOutput[i] = FInput[i].TimeInOriginalZone.ToString(FFormat[i]);
+                    FOutput[i] = FInput[i].ZoneTime.ToString(FFormat[i]);
                     FTimezone[i] = FInput[i].TimeZone.Id;
                 }
                 catch (Exception e)

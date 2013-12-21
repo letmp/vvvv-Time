@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using VVVV.Nodes;
 using VVVV.Packs.Time;
 using VVVV.PluginInterfaces.V2;
@@ -7,8 +8,6 @@ using VVVV.Utils.Streams;
 
 namespace VVVV.Packs.Time.Nodes
 {
-
-
     #region PluginInfo
     [PluginInfo(Name = "Sort", Category = "Time", Help = "Sorts a spread of times. For that the internal UTC represantation is used.", Tags = "", Author = "tmp")]
     #endregion PluginInfo
@@ -16,13 +15,13 @@ namespace VVVV.Packs.Time.Nodes
     {
         #region fields & pins
         [Input("Time")]
-        public ISpread<DateTimeWithZone> FInput;
+        public ISpread<Time> FInput;
 
         [Input("Input", DefaultEnumEntry = "Ascending")]
-        public IDiffSpread<SortEnum> FEnum;
+        public IDiffSpread<ListSortDirection> FEnum;
 
         [Output("Time")]
-        public ISpread<DateTimeWithZone> FOutput;
+        public ISpread<Time> FOutput;
 
         [Output("Former Index")]
         public ISpread<int> FIndex;
@@ -32,13 +31,13 @@ namespace VVVV.Packs.Time.Nodes
         {
             FOutput.SliceCount = FIndex.SliceCount = SpreadMax;
 
-            var listData = new List<KeyValuePair<int, DateTimeWithZone>>();
+            var listData = new List<KeyValuePair<int, Time>>();
 
             for (int i = 0; i < SpreadMax; i++)
             {
-                listData.Add(new KeyValuePair<int, DateTimeWithZone>(i, FInput[i]));
+                listData.Add(new KeyValuePair<int, Time>(i, FInput[i]));
             }
-            if (Enum.GetName(typeof(SortEnum), FEnum[0]) == "Ascending")
+            if (Enum.GetName(typeof(ListSortDirection), FEnum[0]) == "Ascending")
             {
                 listData.Sort((a, b) => a.Value.UniversalTime.CompareTo(b.Value.UniversalTime));
             }
@@ -57,14 +56,14 @@ namespace VVVV.Packs.Time.Nodes
     #region PluginInfo
     [PluginInfo(Name = "Zip", Category = "Time", Help = "Zip time", Tags = "", Author = "tmp")]
     #endregion PluginInfo
-    public class ZipTimeNode : ZipNode<IInStream<DateTimeWithZone>>
+    public class ZipTimeNode : ZipNode<IInStream<Time>>
     {
     }
 
     #region PluginInfo
     [PluginInfo(Name = "Unzip", Category = "Time", Help = "Unzip time", Tags = "", Author = "tmp")]
     #endregion PluginInfo
-    public class UnZipTimeNode : UnzipNode<IInStream<DateTimeWithZone>>
+    public class UnZipTimeNode : UnzipNode<IInStream<Time>>
     {
     }
 
@@ -76,13 +75,13 @@ namespace VVVV.Packs.Time.Nodes
         #region fields & pins
 #pragma warning disable 649
         [Input("Input", CheckIfChanged = true)]
-        ISpread<DateTimeWithZone> FInput;
+        ISpread<Time> FInput;
 
         [Input("Select", DefaultValue = 1, MinValue = 0)]
         ISpread<int> FSelect;
 
         [Output("Output", AutoFlush = false)]
-        ISpread<DateTimeWithZone> FOutput;
+        ISpread<Time> FOutput;
 
         [Output("Former Slice", AutoFlush = false)]
         ISpread<int> FFormer;
@@ -97,7 +96,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 for (int i = 0; i < SpreadMax; i++)
                 {
-                    DateTimeWithZone output = FInput[i];
+                    Time output = FInput[i];
 
                     for (int j = 0; j < FSelect[i]; j++)
                     {
@@ -120,13 +119,13 @@ namespace VVVV.Packs.Time.Nodes
         #region fields & pins
 #pragma warning disable 649
         [Input("Input", CheckIfChanged = true)]
-        ISpread<ISpread<DateTimeWithZone>> FInput;
+        ISpread<ISpread<Time>> FInput;
 
         [Input("Select", DefaultValue = 1, MinValue = 0)]
         ISpread<int> FSelect;
 
         [Output("Output", AutoFlush = false)]
-        ISpread<ISpread<DateTimeWithZone>> FOutput;
+        ISpread<ISpread<Time>> FOutput;
 
         [Output("Former Slice", AutoFlush = false)]
         ISpread<int> FFormer;
@@ -164,13 +163,13 @@ namespace VVVV.Packs.Time.Nodes
         #region fields & pins
 #pragma warning disable 649
         [Input("Input", BinSize = 1)]
-        IDiffSpread<ISpread<DateTimeWithZone>> FInput;
+        IDiffSpread<ISpread<Time>> FInput;
 
         [Input("Index", DefaultValue = 0)]
         ISpread<int> FIndex;
 
         [Output("Output", AutoFlush = false, BinVisibility = PinVisibility.OnlyInspector)]
-        ISpread<ISpread<DateTimeWithZone>> FOutput;
+        ISpread<ISpread<Time>> FOutput;
 #pragma warning restore
         #endregion fields & pins
 
@@ -190,11 +189,11 @@ namespace VVVV.Packs.Time.Nodes
     #region PluginInfo
     [PluginInfo(Name = "DeleteSlice", Category = "Time", Help = "Deletes a slice from a Spread at the given index.", Tags = "", Author = "tmp")]
     #endregion PluginInfo
-    public class DeleteSliceTimeNode : DeleteSlice<IInStream<DateTimeWithZone>> { }
+    public class DeleteSliceTimeNode : DeleteSlice<IInStream<Time>> { }
 
     #region PluginInfo
     [PluginInfo(Name = "SetSlice", Category = "Time", Help = "Replace individual slices of the spread with the given input", Tags = "", Author = "tmp")]
     #endregion PluginInfo
-    public class SetSliceTimeNode : SetSlice<IInStream<DateTimeWithZone>> { }
+    public class SetSliceTimeNode : SetSlice<IInStream<Time>> { }
 
 }

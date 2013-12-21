@@ -72,6 +72,7 @@
     <Reference Include="System.ComponentModel.Composition.Codeplex">
       <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\core\System.ComponentModel.Composition.Codeplex.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="VVVV.Core">
       <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\core\VVVV.Core.dll</HintPath>
     </Reference>
@@ -89,18 +90,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\SortEnum.cs" />
-    <Compile Include="Nodes\AddTimeSpanNode.cs" />
-    <Compile Include="DateTimeWithZone.cs" />
+    <Compile Include="Core\Time.cs" />
+    <Compile Include="Core\TimeZoneManager.cs" />
+    <Compile Include="Nodes\Add.cs" />
     <Compile Include="Nodes\BooleanNodes.cs" />
+    <Compile Include="Nodes\ConverterNodes.cs" />
+    <Compile Include="Nodes\CurrentTime.cs" />
+    <Compile Include="Nodes\JoinSplit.cs" />
     <Compile Include="Nodes\SampleAndHold.cs" />
+    <Compile Include="Nodes\SpreadNodes.cs" />
     <Compile Include="Nodes\SubtractNodes.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TimeNodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,25 +1,24 @@
 using System;
 using System.ComponentModel.Composition;
-using Time.Core;
 using VVVV.Core.Logging;
 using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Packs.Time
 {
     #region PluginInfo
-    [PluginInfo(Name = "Add", Category = "Time", Version = "TimeSpan", Help = "Adds a timespan to a given time", Tags = "TimeSpan", Author = "tmp")]
+    [PluginInfo(Name = "Add", Category = "Time", Version = "", Help = "Adds a timespan to a given time", Tags = "TimeSpan", Author = "tmp")]
     #endregion PluginInfo
     public class AddTimeSpanNode : IPluginEvaluate
     {
         #region fields & pins
         [Input("Time")]
-        public ISpread<DateTimeWithZone> FInput;
+        public ISpread<Time> FInput;
 
         [Input("TimeSpan")]
         public ISpread<TimeSpan> FTimeSpan;
 
         [Output("Time")]
-        public ISpread<DateTimeWithZone> FOutput;
+        public ISpread<Time> FOutput;
 
         [Output("Success")]
         public ISpread<Boolean> FSuccess;
@@ -35,7 +34,7 @@ namespace VVVV.Packs.Time
             {
                 try
                 {
-                    var dtwz = new DateTimeWithZone(FInput[i].TimeInOriginalZone.Add(FTimeSpan[i]), FInput[i].TimeZone);
+                    var dtwz = new Time(FInput[i].ZoneTime.Add(FTimeSpan[i]), FInput[i].TimeZone);
                     FOutput[i] = dtwz;
                     FSuccess[i] = true;
                 }

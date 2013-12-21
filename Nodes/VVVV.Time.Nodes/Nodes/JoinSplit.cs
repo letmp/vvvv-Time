@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using Time.Core;
 using VVVV.Core.Logging;
-using VVVV.Packs.Time;
 using VVVV.PluginInterfaces.V2;
 
 namespace VVVV.Packs.Time.Nodes
 {
 
     #region PluginInfo
-    [PluginInfo(Name = "Gregorian", Category = "Time", Version = "Split", Help = "Gregorian style time splitting.", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "Time", Category = "Time", Version = "Split", Help = "Gregorian style time splitting.", Tags = "Gregorian", Author = "tmp")]
     #endregion PluginInfo
     public class SplitTimeNode : IPluginEvaluate
     {
         #region fields & pins
         [Input("Time")]
-        public ISpread<DateTimeWithZone> FInput;
+        public ISpread<Time> FInput;
 
         [Output("TimeStamp")]
         public ISpread<double> FTimeStamp;
@@ -67,16 +65,16 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    FTimeStamp[i] = FInput[i].TimeInOriginalZone.Subtract(DateTime.MinValue).TotalDays;
-                    FMilli[i] = FInput[i].TimeInOriginalZone.Millisecond;
-                    FSecond[i] = FInput[i].TimeInOriginalZone.Second;
-                    FMinute[i] = FInput[i].TimeInOriginalZone.Minute;
-                    FHour[i] = FInput[i].TimeInOriginalZone.Hour;
-                    FDayOfWeek[i] = (int)FInput[i].TimeInOriginalZone.DayOfWeek;
-                    FDay[i] = FInput[i].TimeInOriginalZone.Day;
-                    FMonth[i] = FInput[i].TimeInOriginalZone.Month;
-                    FYear[i] = FInput[i].TimeInOriginalZone.Year;
-                    FIsDaylightSavingTime[i] = FInput[i].TimeInOriginalZone.IsDaylightSavingTime();
+                    FTimeStamp[i] = FInput[i].ZoneTime.Subtract(DateTime.MinValue).TotalDays;
+                    FMilli[i] = FInput[i].ZoneTime.Millisecond;
+                    FSecond[i] = FInput[i].ZoneTime.Second;
+                    FMinute[i] = FInput[i].ZoneTime.Minute;
+                    FHour[i] = FInput[i].ZoneTime.Hour;
+                    FDayOfWeek[i] = (int)FInput[i].ZoneTime.DayOfWeek;
+                    FDay[i] = FInput[i].ZoneTime.Day;
+                    FMonth[i] = FInput[i].ZoneTime.Month;
+                    FYear[i] = FInput[i].ZoneTime.Year;
+                    FIsDaylightSavingTime[i] = FInput[i].ZoneTime.IsDaylightSavingTime();
                     FTimezone[i] = FInput[i].TimeZone.Id;
                 }
                 catch (Exception e)
@@ -95,7 +93,7 @@ namespace VVVV.Packs.Time.Nodes
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Gregorian", Category = "Time", Version = "Join", Help = "Create time in a gregorian way.", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "Time", Category = "Time", Version = "Join", Help = "Create time in a gregorian way.", Tags = "Gregorian", Author = "tmp")]
     #endregion PluginInfo
     public class JoinTimeNode : IPluginEvaluate
     {
@@ -125,7 +123,7 @@ namespace VVVV.Packs.Time.Nodes
         public IDiffSpread<EnumEntry> FTimezone;
 
         [Output("Time")]
-        public ISpread<DateTimeWithZone> FOutput;
+        public ISpread<Time> FOutput;
 
         [Output("Success")]
         public ISpread<bool> FSuccess;
@@ -137,9 +135,8 @@ namespace VVVV.Packs.Time.Nodes
         [ImportingConstructor]
         public JoinTimeNode()
         {
-            var timezones = new List<string>();
-            foreach (TimeZoneInfo z in TimeZoneInfo.GetSystemTimeZones()) timezones.Add(z.Id);
-            EnumManager.UpdateEnum("TimezoneEnum", "UTC", timezones.ToArray());
+            TimeZoneManager.Update();
+
         }
 
         public void Evaluate(int SpreadMax)
@@ -152,14 +149,14 @@ namespace VVVV.Packs.Time.Nodes
                 {
                     var dt = new DateTime(FYear[i], FMonth[i], FDay[i], FHour[i], FMinute[i], FSecond[i], FMilli[i]);
                     TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById(FTimezone[i]);
-                    var dtwz = new DateTimeWithZone(dt, tz);
+                    var dtwz = new Time(dt, tz);
                     FOutput[i] = dtwz;
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
                 {
                     FLogger.Log(LogType.Debug, e.ToString());
-                    FOutput[i] = new DateTimeWithZone(DateTime.MinValue, TimeZoneInfo.Utc);
+                    FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
                     FSuccess[i] = false;
                 }
 
@@ -173,23 +170,22 @@ namespace VVVV.Packs.Time.Nodes
     public class UpdateTimezoneNode : IPluginEvaluate
     {
         [Input("Time")]
-        public ISpread<DateTimeWithZone> FInput;
+        public ISpread<Time> FInput;
 
         [Input("Timezone", EnumName = "TimezoneEnum")]
         public IDiffSpread<EnumEntry> FTimezone;
 
         #region fields & pins
         [Output("Time")]
-        public ISpread<DateTimeWithZone> FOutput;
+        public ISpread<Time> FOutput;
 
         #endregion fields & pins
 
         [ImportingConstructor]
         public UpdateTimezoneNode()
         {
-            var timezones = new List<string>();
-            foreach (TimeZoneInfo z in TimeZoneInfo.GetSystemTimeZones()) timezones.Add(z.Id);
-            EnumManager.UpdateEnum("TimezoneEnum", "UTC", timezones.ToArray());
+            TimeZoneManager.Update();
+
         }
 
         public void Evaluate(int SpreadMax)
@@ -198,14 +194,14 @@ namespace VVVV.Packs.Time.Nodes
             for (int i = 0; i < SpreadMax; i++)
             {
                 var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimezone[i]);
-                var dtwz = new DateTimeWithZone(DateTime.SpecifyKind(FInput[i].TimeInSpecificZone(tz), DateTimeKind.Unspecified), tz);
+                var dtwz = new Time(DateTime.SpecifyKind(FInput[i].OtherZoneTime(tz), DateTimeKind.Unspecified), tz);
                 FOutput[i] = dtwz;
             }
         }
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "TimeSpan", Category = "Time", Version = "Join", Help = "Creates a timespan", Tags = "TimeSpan", Author = "tmp")]
+    [PluginInfo(Name = "TimeSpan", Category = "Time", Version = "Join", Help = "Creates a timespan", Tags = "Gregorian", Author = "tmp")]
     #endregion PluginInfo
     public class JoinTimespanNode : IPluginEvaluate
     {
@@ -242,7 +238,7 @@ namespace VVVV.Packs.Time.Nodes
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "TimeSpan", Category = "Time", Version = "Split", Help = "Splits a given timespan", Tags = "TimeSpan", Author = "tmp")]
+    [PluginInfo(Name = "TimeSpan", Category = "Time", Version = "Split", Help = "Splits a given timespan", Tags = "Gregorian", Author = "tmp")]
     #endregion PluginInfo
     public class SplitTimespanNode : IPluginEvaluate
     {

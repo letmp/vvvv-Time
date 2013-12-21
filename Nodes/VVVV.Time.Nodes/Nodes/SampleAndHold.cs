@@ -13,12 +13,12 @@ namespace VVVV.Packs.Time.Nodes
         #region fields & pins
 #pragma warning disable 649
         [Input("Time", AutoValidate = false)]
-        private ISpread<DateTimeWithZone> FInput;
+        private ISpread<Time> FInput;
 
         [Input("Set", IsBang = true)]
         private ISpread<bool> FSetIn;
         [Output("Time")]
-        private ISpread<DateTimeWithZone> FOutput;
+        private ISpread<Time> FOutput;
 #pragma warning restore
         #endregion fields & pins
 
