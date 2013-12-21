@@ -70,26 +70,31 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.Codeplex">
-      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\core\System.ComponentModel.Composition.Codeplex.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\core\System.ComponentModel.Composition.Codeplex.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Core">
-      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\core\VVVV.Core.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\core\VVVV.Core.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Nodes">
-      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\nodes\plugins\VVVV.Nodes.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\nodes\plugins\VVVV.Nodes.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces">
-      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\core\VVVV.PluginInterfaces.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\core\VVVV.PluginInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils">
-      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\core\VVVV.Utils.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\core\VVVV.Utils.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils3rdParty">
-      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\core\VVVV.Utils3rdParty.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\core\VVVV.Utils3rdParty.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\SortEnum.cs" />
+    <Compile Include="Nodes\AddTimeSpanNode.cs" />
     <Compile Include="DateTimeWithZone.cs" />
+    <Compile Include="Nodes\BooleanNodes.cs" />
+    <Compile Include="Nodes\SampleAndHold.cs" />
+    <Compile Include="Nodes\SubtractNodes.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
