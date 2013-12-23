@@ -1,0 +1,147 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv_45beta31.2_x86\packs\time\nodes\plugins\AsString (Time) help.v4p">
+   <BOUNDS height="6645" left="4620" top="3735" type="Window" width="8010">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)">
+   <BOUNDS height="255" left="255" top="525" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="945" left="255" top="525" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Outputs the string representation and the timezone of a given time and a given format.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)">
+   <BOUNDS height="270" left="255" top="165" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="255" top="165" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|AsString (Time)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="405" top="4695" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="405" top="4695">
+   </BOUNDS>
+   <PIN pinname="Format" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="CurrentTime (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="CurrentTime (Time)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="405" top="1920" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="405" top="1920">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Time" dstnodeid="3" dstpinname="Time">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="5" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="1965" top="1995" width="5850" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1965" top="1995" width="5850" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="http://www.geekzilla.co.uk/View00FF7904-B510-468C-A2C8-F859AA20581F.htm">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="URL">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="6" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="1965" top="1740" width="2055" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1965" top="1740" width="2055" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|here you can find patterns:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="IOBox (String)" nodename="IOBox (String)" componentmode="InABox" id="7">
+   <BOUNDS type="Node" left="1965" top="2385" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1965" top="2385" width="2520" height="1230">
+   </BOUNDS>
+   <PIN pinname="Rows" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input String" slicecount="5" values="MM/dd/yyyy,|dddd, dd MMMM yyyy|,|dddd, dd MMMM yyyy HH:mm:ss|,|yyyy&apos;-&apos;MM&apos;-&apos;dd HH&apos;:&apos;mm&apos;:&apos;ss|,|MM&apos;/&apos;dd&apos;/&apos;yyyy h:mm tt|">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSlice (String)" nodename="GetSlice (String)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="1965" top="4185" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Index" slicecount="1" visible="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Output String" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="3" dstpinname="Format" linkstyle="VHV">
+   <LINKPOINT x="1965" y="4560">
+   </LINKPOINT>
+   <LINKPOINT x="1095" y="4560">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="9" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="390" top="5100" width="3585" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="390" top="5100" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Timestring" dstnodeid="9" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="2265" top="3765" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Cycles" visible="1">
+   </PIN>
+   <PIN pinname="Reset" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Period" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Cycles" dstnodeid="8" dstpinname="Index" linkstyle="VHV">
+   <LINKPOINT x="2855" y="4110">
+   </LINKPOINT>
+   <LINKPOINT x="2710" y="4110">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>

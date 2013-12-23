@@ -1,0 +1,145 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv_45beta31.2_x86\packs\time\nodes\plugins\DeleteSlice (Time) help.v4p">
+   <BOUNDS height="6630" left="8925" top="1440" type="Window" width="5220">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)">
+   <BOUNDS height="255" left="255" top="525" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="945" left="255" top="525" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Deletes a slice from a Spread at the given index.&cr;&lf;Works like a GetSlice, but removes the slice instead of returning it.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)">
+   <BOUNDS height="270" left="255" top="165" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="255" top="165" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|DeleteSlice (Time)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsTime (Value)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsTime (Value)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="345" top="2355" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="345" top="2355">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="LinearSpread (Spreads)" nodename="LinearSpread (Spreads)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="345" top="1515" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Width" slicecount="1" values="100">
+   </PIN>
+   <PIN pinname="Spread Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output" dstnodeid="11" dstpinname="Time">
+   </LINK>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="345" top="3240" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="345" top="3240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Time" dstnodeid="9" dstpinname="Time">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="345" top="4125" width="1920" height="1350">
+   </BOUNDS>
+   <BOUNDS type="Node" left="345" top="4125" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Timestring" dstnodeid="8" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="2505" top="3240" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="2505" top="3240">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="6" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2490" top="4125" width="2040" height="1395">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2490" top="4125" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Timestring" dstnodeid="6" dstpinname="Input String">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="5" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3330" top="2370" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3330" top="2370" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <NODE systemname="DeleteSlice (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="DeleteSlice (Time)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="2520" top="2820" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Spread" visible="1">
+   </PIN>
+   <PIN pinname="Input Bin Size">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output" dstnodeid="7" dstpinname="Time">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="4" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Time" dstnodeid="4" dstpinname="Input" linkstyle="VHV">
+   <LINKPOINT x="405" y="2708">
+   </LINKPOINT>
+   <LINKPOINT x="2520" y="2708">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>

@@ -1,0 +1,111 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv_45beta31.2_x86\packs\time\nodes\plugins\TimeSpan (Time Join) help.v4p">
+   <BOUNDS height="5205" left="4830" top="1530" type="Window" width="5055">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)">
+   <BOUNDS height="255" left="255" top="525" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="945" left="255" top="525" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Creates a timespan. This node is used to add a timespan to a given time.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)">
+   <BOUNDS height="270" left="255" top="165" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="255" top="165" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|TimeSpan (Time Join)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="TimeSpan (Time Join)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="TimeSpan (Time Join)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="1710" top="2265" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="TimeSpan" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="1710" top="2265">
+   </BOUNDS>
+   <PIN pinname="Day" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsTime (Value)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsTime (Value)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="645" top="2265" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="0">
+   </PIN>
+   <BOUNDS type="Box" left="645" top="2265">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Add (Time TimeSpan)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="Add (Time TimeSpan)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="645" top="3045" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <PIN pinname="TimeSpan" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="645" top="3045">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Time" dstnodeid="5" dstpinname="Time">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="TimeSpan" dstnodeid="5" dstpinname="TimeSpan" linkstyle="VHV">
+   <LINKPOINT x="1710" y="2775">
+   </LINKPOINT>
+   <LINKPOINT x="975" y="2775">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="645" top="3720" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="645" top="3720">
+   </BOUNDS>
+   <PIN pinname="Format" slicecount="1" values="yyyy&apos;/&apos;MM&apos;/&apos;dd">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Time" dstnodeid="6" dstpinname="Time">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="7" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="645" top="4140" width="1035" height="255">
+   </BOUNDS>
+   <BOUNDS type="Node" left="645" top="4140" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Timestring" dstnodeid="7" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="1020" top="1770" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Cycles" visible="1">
+   </PIN>
+   <PIN pinname="Reverse" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Period" slicecount="1" values="0.5">
+   </PIN>
+   <PIN pinname="Reset" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Cycles" dstnodeid="3" dstpinname="Day">
+   </LINK>
+   </PATCH>

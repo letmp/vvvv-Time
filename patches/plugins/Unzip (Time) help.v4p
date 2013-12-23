@@ -1,0 +1,129 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv_45beta31.2_x86\packs\time\nodes\plugins\Unzip (Time) help.v4p">
+   <BOUNDS height="4635" left="420" top="855" type="Window" width="4995">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)">
+   <BOUNDS height="255" left="255" top="525" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="330" left="255" top="525" type="Box" width="3885">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Unzips time spreads.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)">
+   <BOUNDS height="270" left="255" top="165" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="255" top="165" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Unzip (Time)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Zip (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="Zip (Time)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="315" top="1845" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="315" top="1845">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="CurrentTime (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="CurrentTime (Time)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="315" top="1065" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="315" top="1065">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Time" dstnodeid="6" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Time" dstnodeid="6" dstpinname="Input 2" linkstyle="VHV">
+   <LINKPOINT x="375" y="1590">
+   </LINKPOINT>
+   <LINKPOINT x="675" y="1590">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Unzip (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="Unzip (Time)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="315" top="2490" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="315" top="2490">
+   </BOUNDS>
+   <PIN pinname="Output 2" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="11" dstpinname="Input">
+   </LINK>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="315" top="2970" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="315" top="2970">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Output 1" dstnodeid="12" dstpinname="Time">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="13" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="315" top="3480" width="1845" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="315" top="3480" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Timestring" dstnodeid="13" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="2265" top="2970" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="2265" top="2970">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="14" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2265" top="3480" width="1845" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2265" top="3480" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Timestring" dstnodeid="14" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Output 2" dstnodeid="15" dstpinname="Time" linkstyle="VHV">
+   <LINKPOINT x="735" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="2265" y="2850">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>

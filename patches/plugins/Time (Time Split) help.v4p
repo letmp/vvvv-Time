@@ -1,0 +1,247 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv_45beta31.2_x86\packs\time\nodes\plugins\Gregorian (Time Split) help.v4p">
+   <BOUNDS height="4470" left="420" top="855" type="Window" width="8070">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)">
+   <BOUNDS height="255" left="255" top="525" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="945" left="255" top="525" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Splits a time into separate values in a way pope gregory XIII would be happy with. &cr;&lf;&cr;&lf;The timestamp represents the days since 01.01.01|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)">
+   <BOUNDS height="270" left="255" top="165" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="255" top="165" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Gregorian (Time Split)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE systemname="Gregorian (Time Split)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="Gregorian (Time Split)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="345" top="2160" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="CurrentTime (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="CurrentTime (Time)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="360" top="1785" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Time" dstnodeid="3" dstpinname="Time">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="345" top="3300" width="1065" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="345" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="TimeStamp" dstnodeid="6" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="375" y="2865">
+   </LINKPOINT>
+   <LINKPOINT x="375" y="2865">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1470" top="3300" width="420" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1470" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Millisecond" dstnodeid="7" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="570" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="1455" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="8" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1965" top="3300" width="330" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1965" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Second" dstnodeid="8" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="720" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="1950" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2370" top="3300" width="330" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2370" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Minute" dstnodeid="9" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="885" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="2370" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2760" top="3300" width="390" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2760" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Hour" dstnodeid="10" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="1035" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="2760" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3210" top="3300" width="345" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3210" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="DayOfWeek" dstnodeid="11" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="1200" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="3210" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3630" top="3300" width="330" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3630" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Day" dstnodeid="12" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="1365" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="3630" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="13" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4020" top="3300" width="375" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4020" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Month" dstnodeid="13" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="1515" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="4020" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4455" top="3300" width="465" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4455" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Year" dstnodeid="14" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="1680" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="4455" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4965" top="3300" width="315" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4965" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="IsDaylightSavingTime" dstnodeid="15" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="1830" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="4965" y="2850">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="16" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5325" top="3300" width="2190" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5325" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Timezone" dstnodeid="16" dstpinname="Input String" linkstyle="Bezier">
+   <LINKPOINT x="1995" y="2850">
+   </LINKPOINT>
+   <LINKPOINT x="5325" y="2850">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>

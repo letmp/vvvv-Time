@@ -1,0 +1,225 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv_45beta31.2_x86\packs\time\nodes\plugins\EQ (Time) help.v4p">
+   <BOUNDS height="6630" left="5535" top="2235" type="Window" width="6600">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)">
+   <BOUNDS height="255" left="255" top="525" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="570" left="255" top="525" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Compares two time objects and outputs 1 if they are equal.&cr;&lf;You can also use a timespan as epsilon.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)">
+   <BOUNDS height="270" left="255" top="165" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="255" top="165" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|= (Time)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1890" top="5235" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1890" top="5235" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="2400" top="3660" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="2400" top="3660">
+   </BOUNDS>
+   <PIN pinname="Format" slicecount="1" values="yyyy&apos;/&apos;MM&apos;/&apos;dd">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="6" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2400" top="4140" width="990" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2400" top="4140" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Timestring" dstnodeid="6" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="AsString (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsString (Time)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="405" top="3660" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="405" top="3660">
+   </BOUNDS>
+   <PIN pinname="Format" slicecount="1" values="yyyy&apos;/&apos;MM&apos;/&apos;dd">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="4" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="405" top="4140" width="1050" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="405" top="4140" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Timestring" dstnodeid="4" dstpinname="Input String">
+   </LINK>
+   <NODE systemname="Add (Time TimeSpan)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="Add (Time TimeSpan)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="2070" top="2745" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="TimeSpan" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="TimeSpan (Time Join)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="TimeSpan (Time Join)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="2970" top="2100" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="TimeSpan" visible="1">
+   </PIN>
+   <PIN pinname="Day" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2970" top="2100">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="TimeSpan" dstnodeid="16" dstpinname="TimeSpan" linkstyle="VHV">
+   <LINKPOINT x="2965" y="2543">
+   </LINKPOINT>
+   <LINKPOINT x="2405" y="2543">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="2970" top="1440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Time" dstnodeid="7" dstpinname="Time" linkstyle="Bezier">
+   <LINKPOINT x="2115" y="3338">
+   </LINKPOINT>
+   <LINKPOINT x="2415" y="3338">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="EQ (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="EQ (Time)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="1875" top="4755" width="420" height="270">
+   </BOUNDS>
+   <PIN pinname="Time 1" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Time 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="1875" top="4755">
+   </BOUNDS>
+   <PIN pinname="Epsilon (TimeSpan)" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="10" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Time" dstnodeid="3" dstpinname="Time 2">
+   </LINK>
+   <NODE systemname="TimeSpan (Time Join)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="TimeSpan (Time Join)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="3795" top="4140" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="TimeSpan" visible="1">
+   </PIN>
+   <PIN pinname="Day" slicecount="1" visible="1" values="1">
+   </PIN>
+   <BOUNDS type="Box" left="3795" top="4140">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="AsTime (Value)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="AsTime (Value)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="1875" top="2100" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="0">
+   </PIN>
+   <BOUNDS type="Box" left="1875" top="2100">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Time" dstnodeid="16" dstpinname="Time" linkstyle="VHV">
+   <LINKPOINT x="1900" y="2640">
+   </LINKPOINT>
+   <LINKPOINT x="2090" y="2490">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Time" dstnodeid="5" dstpinname="Time" linkstyle="Bezier">
+   <LINKPOINT x="1875" y="3000">
+   </LINKPOINT>
+   <LINKPOINT x="465" y="3000">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Time" dstnodeid="3" dstpinname="Time 1">
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Output" dstnodeid="17" dstpinname="Day">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3795" top="3465" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3795" top="3465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="27" dstpinname="Day">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="TimeSpan" dstnodeid="3" dstpinname="Epsilon (TimeSpan)" linkstyle="VHV">
+   <LINKPOINT x="3795" y="4568">
+   </LINKPOINT>
+   <LINKPOINT x="2325" y="4568">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="33" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="4425" top="3540" width="1785" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4425" top="3540" width="1785" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; set 1 day as epsilon|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   </PATCH>

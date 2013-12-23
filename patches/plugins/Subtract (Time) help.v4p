@@ -1,0 +1,121 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv_45beta31.2_x86\packs\time\nodes\plugins\Subtract (Time) help.v4p">
+   <BOUNDS height="4890" left="420" top="855" type="Window" width="4890">
+   </BOUNDS>
+   <NODE componentmode="InABox" id="1" nodename="IOBox (String)">
+   <BOUNDS height="270" left="255" top="165" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="360" left="255" top="165" type="Box" width="4335">
+   </BOUNDS>
+   <BOUNDS height="160" left="6660" top="12870" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|- (Time)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <NODE id="2" componentmode="InABox" nodename="IOBox (String)" systemname="IOBox (String)">
+   <BOUNDS type="Node" height="255" left="255" top="525" width="570">
+   </BOUNDS>
+   <BOUNDS type="Box" height="360" left="255" top="525" width="4380">
+   </BOUNDS>
+   <BOUNDS type="Window" height="160" left="6660" top="12870" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Subtracts one time from another and outputs a timespan.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="Subtract (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="Subtract (Time)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="270" top="2700" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time 1" visible="1">
+   </PIN>
+   <PIN pinname="Time 2" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="270" top="2700">
+   </BOUNDS>
+   <PIN pinname="TimeSpan" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="12" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="270" top="1110" width="1695" height="525">
+   </BOUNDS>
+   <BOUNDS type="Node" left="270" top="1110" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="2" values="|2013-12-19 18:00:00|,|2013-12-17 18:00:00|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Columns" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsTime (String)" filename="%VVVV%\packs\dateTime\nodes\plugins\x86\Debug\DateTime.dll" nodename="AsTime (String)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="270" top="1740" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Timezone" visible="1" slicecount="1" values="|India Standard Time|">
+   </PIN>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="270" top="1740">
+   </BOUNDS>
+   <PIN pinname="Format" slicecount="1" values="|yyyy-MM-dd H:mm:ss|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Output String" dstnodeid="10" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Unzip (Time)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="Unzip (Time)" componentmode="Hidden" id="14">
+   <BOUNDS type="Node" left="270" top="2145" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   <PIN pinname="Output 2" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="270" top="2145">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Time" dstnodeid="14" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Output 1" dstnodeid="9" dstpinname="Time 1">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Output 2" dstnodeid="9" dstpinname="Time 2">
+   </LINK>
+   <NODE systemname="TimeSpan (Time Split)" filename="%VVVV%\packs\time\nodes\plugins\Time.dll" nodename="TimeSpan (Time Split)" componentmode="Hidden" id="15">
+   <BOUNDS type="Node" left="270" top="3255" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="TimeSpan" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="TimeSpan" dstnodeid="15" dstpinname="TimeSpan">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="285" top="3825" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="285" top="3825" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Day" dstnodeid="16" dstpinname="Y Input Value">
+   </LINK>
+   </PATCH>
