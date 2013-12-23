@@ -10,8 +10,8 @@
     <ProjectGuid>{C2F6EC8A-AA56-4121-B60F-72012D192835}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VVVV.Pack.Time</RootNamespace>
-    <AssemblyName>VVVV.Pack.Time</AssemblyName>
+    <RootNamespace>VVVV.Pack.Time.Core</RootNamespace>
+    <AssemblyName>VVVV.Pack.Time.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>..\..\build\$(Platform)\$(Configuration)\$(SolutionName)\core\</OutputPath>
@@ -43,6 +43,9 @@
     <Reference Include="VVVV.Core">
       <HintPath>..\packages\VVVV.Core.31.3.1\lib\net40\VVVV.Core.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="VVVV.Nodes">
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\nodes\plugins\VVVV.Nodes.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.Utils">
       <HintPath>..\packages\VVVV.Utils.31.3.1\lib\net40\VVVV.Utils.dll</HintPath>

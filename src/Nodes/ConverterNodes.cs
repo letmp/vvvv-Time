@@ -122,23 +122,6 @@ namespace VVVV.Packs.Time.Nodes
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "LocalTimezone", Category = "Time", Help = "Outputs your local timezone.", Tags = "Timezone", Author = "tmp")]
-    #endregion PluginInfo
-    public class LocalTimezoneNode : IPluginEvaluate
-    {
-        #region fields & pins
-        [Output("Timezone")]
-        public ISpread<string> FOutput;
-        #endregion fields & pins
-
-        public void Evaluate(int SpreadMax)
-        {
-            FOutput.SliceCount = 1;
-            FOutput[0] = TimeZoneInfo.Local.Id;
-        }
-    }
-
-    #region PluginInfo
     [PluginInfo(Name = "AsString", Category = "Time", Help = "Gives the string representation of a Time object in a given format", Tags = "String", Author = "tmp")]
     #endregion PluginInfo
     public class AsStringTimeNode : IPluginEvaluate
@@ -177,6 +160,77 @@ namespace VVVV.Packs.Time.Nodes
                     FOutput[i] = "";
                     FTimezone[i] = "";
                 }
+            }
+        }
+    }
+
+    #region PluginInfo
+    [PluginInfo(Name = "AsString", Category = "Time", Version="TimeSpan", Help = "Gives the string representation of a TimeSpan object", Tags = "String", Author = "tmp")]
+    #endregion PluginInfo
+    public class AsStringTimeSpanNode : IPluginEvaluate
+    {
+        #region fields & pins
+        [Input("TimeSpan")]
+        public ISpread<TimeSpan> FInput;
+
+        [Output("TimeSpan String")]
+        public ISpread<string> FOutput;
+
+        [Import()]
+        public ILogger FLogger;
+        #endregion fields & pins
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOutput.SliceCount = SpreadMax;
+
+            for (int i = 0; i < FInput.SliceCount; i++)
+            {
+                try
+                {
+                    FOutput[i] = FInput[i].ToString();
+                }
+                catch (Exception e)
+                {
+                    FLogger.Log(LogType.Debug, e.ToString());
+                    FOutput[i] = "";
+                }
+            }
+        }
+    }
+
+    #region PluginInfo
+    [PluginInfo(Name = "ChangeTimezone", Category = "Time", Help = "Changes time from the current timezone to a new timezone. This also converts the time!", Tags = "Timezone", Author = "tmp")]
+    #endregion PluginInfo
+    public class UpdateTimezoneNode : IPluginEvaluate
+    {
+        [Input("Time")]
+        public ISpread<Time> FInput;
+
+        [Input("Timezone", EnumName = "TimezoneEnum")]
+        public IDiffSpread<EnumEntry> FTimezone;
+
+        #region fields & pins
+        [Output("Time")]
+        public ISpread<Time> FOutput;
+
+        #endregion fields & pins
+
+        [ImportingConstructor]
+        public UpdateTimezoneNode()
+        {
+            TimeZoneManager.Update();
+
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOutput.SliceCount = SpreadMax;
+            for (int i = 0; i < SpreadMax; i++)
+            {
+                var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimezone[i]);
+                var dtwz = new Time(DateTime.SpecifyKind(FInput[i].OtherZoneTime(tz), DateTimeKind.Unspecified), tz);
+                FOutput[i] = dtwz;
             }
         }
     }
