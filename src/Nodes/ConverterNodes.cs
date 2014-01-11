@@ -200,6 +200,127 @@ namespace VVVV.Packs.Time.Nodes
     }
 
     #region PluginInfo
+    [PluginInfo(Name = "AsValue", Category = "Time", Version = "Decimal", Help = "Gives the decimal representation of a Time object", Tags = "", Author = "sebl")]
+    #endregion PluginInfo
+    public class AsValueDecimalTimeNode : IPluginEvaluate
+    {
+        #region fields & pins
+        [Input("Time")]
+        public ISpread<Time> FInput;
+
+        [Output("Decimal")]
+        public ISpread<double> FOutput;
+
+        [Import()]
+        public ILogger FLogger;
+        #endregion fields & pins
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOutput.SliceCount = FInput.SliceCount = SpreadMax;
+
+            for (int i = 0; i < FInput.SliceCount; i++)
+            {
+                try
+                {
+//                  FOutput[i] = ( double )Convert.ToDecimal(TimeSpan.Parse(FInput[i].UniversalTime.ToString("HH:mm:ss")).TotalHours);
+                    FOutput[i] = ( double )Convert.ToDecimal(TimeSpan.Parse(FInput[i].ZoneTime.ToString("HH:mm:ss")).TotalHours);
+                }
+                catch (Exception e)
+                {
+                    FLogger.Log(LogType.Debug, e.ToString());
+                    FOutput[i] = -1;
+                }
+            }
+        }
+    }
+
+
+    #region PluginInfo
+    [PluginInfo(Name = "AsValue", Category = "Time", Version = "Unix", Help = "Gives the Unnix Time Code (Value) of a Time object", Tags = "", Author = "sebl")]
+    #endregion PluginInfo
+    public class AsValueUnixTimeNode : IPluginEvaluate
+    {
+        #region fields & pins
+        [Input("Time")]
+        public ISpread<Time> FInput;
+
+        [Output("Unix Time Stamp")]
+        public ISpread<double> FOutput;
+
+        [Import()]
+        public ILogger FLogger;
+        #endregion fields & pins
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOutput.SliceCount = FInput.SliceCount = SpreadMax;
+
+            for (int i = 0; i < FInput.SliceCount; i++)
+            {
+                try
+                {
+                    FOutput[i] = (double) UnixTimestampFromDateTime(FInput[i].ZoneTime);
+                }
+                catch (Exception e)
+                {
+                    FLogger.Log(LogType.Debug, e.ToString());
+                    FOutput[i] = -1;
+                }
+            }
+        }
+
+        public static double UnixTimestampFromDateTime(DateTime date)
+        {
+            TimeSpan span = date - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime();
+            return span.TotalSeconds;
+        }
+    }
+
+
+    #region PluginInfo
+    [PluginInfo(Name = "AsString", Category = "Time", Version = "Unix", Help = "Gives the Unnix Time Code (String) of a Time object", Tags = "", Author = "sebl")]
+    #endregion PluginInfo
+    public class AsStringUnixTimeNode : IPluginEvaluate
+    {
+        #region fields & pins
+        [Input("Time")]
+        public ISpread<Time> FInput;
+
+        [Output("Unix Time Stamp")]
+        public ISpread<string> FOutput;
+
+        [Import()]
+        public ILogger FLogger;
+        #endregion fields & pins
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOutput.SliceCount = FInput.SliceCount = SpreadMax;
+
+            for (int i = 0; i < FInput.SliceCount; i++)
+            {
+                try
+                {
+                    FOutput[i] = UnixTimestampFromDateTime(FInput[i].ZoneTime).ToString();
+                }
+                catch (Exception e)
+                {
+                    FLogger.Log(LogType.Debug, e.ToString());
+                    FOutput[i] = "";
+                }
+            }
+        }
+
+        public static double UnixTimestampFromDateTime(DateTime date)
+        {
+            TimeSpan span = date - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime();
+            return span.TotalSeconds;
+        }
+    }
+
+
+    #region PluginInfo
     [PluginInfo(Name = "ChangeTimezone", Category = "Time", Help = "Changes time from the current timezone to a new timezone. This also converts the time!", Tags = "Timezone", Author = "tmp")]
     #endregion PluginInfo
     public class UpdateTimezoneNode : IPluginEvaluate
