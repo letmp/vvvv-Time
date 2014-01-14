@@ -1,0 +1,285 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
+   <PATCH nodename="C:\vvvv\vvvv-Time\patches\plugins\AsTime (Value Decimal) help.v4p" systemname="AsTime (Value Decimal) help" filename="C:\vvvv\vvvv-Time\patches\plugins\AsTime (Value Decimal) help.v4p">
+   <BOUNDS type="Window" left="7560" top="4620" width="7755" height="7860">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="150" top="150" width="5000" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="150" top="150" width="5000" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|AsTime (Value Decimal)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="150" top="550" width="5000" height="500">
+   </BOUNDS>
+   <BOUNDS type="Box" left="150" top="550" width="5000" height="500">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Converts a given decimal-time to time in a given timezone.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsValue (Time Decimal)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\VVVV.Pack.Time.Nodes.dll" nodename="AsValue (Time Decimal)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="1515" top="2730" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="1515" top="2730">
+   </BOUNDS>
+   <PIN pinname="Decimal" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="345" top="3210" width="1530" height="285">
+   </BOUNDS>
+   <BOUNDS type="Node" left="345" top="3210" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Decimal">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="21.7698416666667">
+   </PIN>
+   </NODE>
+   <NODE systemname="Time (Time Split)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\VVVV.Pack.Time.Nodes.dll" nodename="Time (Time Split)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="1515" top="4545" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="1515" top="4545">
+   </BOUNDS>
+   <PIN pinname="Minute" visible="1">
+   </PIN>
+   <PIN pinname="Hour" visible="1">
+   </PIN>
+   <PIN pinname="Millisecond" visible="1">
+   </PIN>
+   <PIN pinname="Second" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="CurrentTime (Time)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\VVVV.Pack.Time.Nodes.dll" nodename="CurrentTime (Time)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="1515" top="1590" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="660" top="1890">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Time" dstnodeid="8" dstpinname="Time">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="13" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="570" top="5865" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="570" top="5865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Millisecond">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1470" top="5865" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1470" top="5865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Second">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2370" top="5865" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2370" top="5865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Minute">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3270" top="5865" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3270" top="5865" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Hour">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Millisecond" dstnodeid="13" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Second" dstnodeid="14" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Minute" dstnodeid="15" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Hour" dstnodeid="19" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23" systemname="IOBox (Value Advanced)" hiddenwhenlocked="1">
+   <BOUNDS type="Box" left="570" top="6465" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="570" top="6465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Millisecond">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="94">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="22" systemname="IOBox (Value Advanced)" hiddenwhenlocked="1">
+   <BOUNDS type="Box" left="1470" top="6465" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1470" top="6465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Second">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="16">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="21" systemname="IOBox (Value Advanced)" hiddenwhenlocked="1">
+   <BOUNDS type="Box" left="2370" top="6465" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2370" top="6465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Minute">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="45">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="20" systemname="IOBox (Value Advanced)" hiddenwhenlocked="1">
+   <BOUNDS type="Box" left="3270" top="6465" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3270" top="6465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Hour">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="21">
+   </PIN>
+   </NODE>
+   <NODE nodename="AsTime (Value Decimal)" componentmode="Hidden" id="0" systemname="AsTime (Value Decimal)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\VVVV.Pack.Time.Nodes.dll">
+   <BOUNDS type="Node" left="1515" top="4020" width="750" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1515" top="4020" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Decimal Time" visible="1">
+   </PIN>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <PIN pinname="Day" visible="1">
+   </PIN>
+   <PIN pinname="Month" visible="1">
+   </PIN>
+   <PIN pinname="Year" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Decimal" dstnodeid="0" dstpinname="Decimal Time">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Time" dstnodeid="9" dstpinname="Time">
+   </LINK>
+   <NODE id="10" systemname="Time (Time Split)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\VVVV.Pack.Time.Nodes.dll" nodename="Time (Time Split)" componentmode="Hidden" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="3915" top="4575" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <PIN pinname="Day" visible="1">
+   </PIN>
+   <PIN pinname="Month" visible="1">
+   </PIN>
+   <PIN pinname="Year" visible="1">
+   </PIN>
+   <PIN pinname="Millisecond" visible="1">
+   </PIN>
+   <PIN pinname="Second" visible="1">
+   </PIN>
+   <PIN pinname="Minute" visible="1">
+   </PIN>
+   <PIN pinname="Hour" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="3915" top="4575">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Hour" dstnodeid="20" dstpinname="Y Input Value" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Minute" dstnodeid="21" dstpinname="Y Input Value" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Second" dstnodeid="22" dstpinname="Y Input Value" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Millisecond" dstnodeid="23" dstpinname="Y Input Value" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Time" dstnodeid="10" dstpinname="Time" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Decimal" dstnodeid="7" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="24" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="5220" top="6465" width="750" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5220" top="6465" width="750" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|see also:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="AsTime (Value Decimal Advanced)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\VVVV.Pack.Time.Nodes.dll" nodename="AsTime (Value Decimal Advanced)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="6015" top="6465" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   </PATCH>
