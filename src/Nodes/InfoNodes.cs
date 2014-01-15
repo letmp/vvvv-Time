@@ -3,7 +3,6 @@
 using System;
 using System.ComponentModel.Composition;
 using VVVV.Core.Logging;
-using VVVV.Packs.Time;
 using VVVV.PluginInterfaces.V2;
 
 #endregion usings
@@ -30,7 +29,9 @@ namespace VVVV.Packs.Time.Nodes
         private  static Time? currentTime = null;
             
         [Import()]
+        #pragma warning disable 649
         IHDEHost FHDEHost;
+        #pragma warning restore 649
 
         #endregion fields & pins
 

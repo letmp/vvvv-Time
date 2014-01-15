@@ -39,9 +39,9 @@
       <HintPath>..\packages\VVVV.Core.31.5.0-develop-85\lib\net40\VVVV.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="VVVV.Nodes, Version=1.0.5063.37482, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="VVVV.Nodes, Version=1.0.5063.37329, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\apps\code\vvvv_45beta31.2_x64\lib\nodes\plugins\VVVV.Nodes.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\nodes\plugins\VVVV.Nodes.dll</HintPath>
     </Reference>
     <Reference Include="VVVV.PluginInterfaces, Version=31.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
