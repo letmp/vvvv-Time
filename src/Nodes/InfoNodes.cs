@@ -25,12 +25,26 @@ namespace VVVV.Packs.Time.Nodes
 
         [Import()]
         public ILogger FLogger;
+
+        private static double currentFrame;
+        private  static Time? currentTime = null;
+            
+        [Import()]
+        IHDEHost FHDEHost;
+
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
+            if (currentTime == null || currentFrame != FHDEHost.FrameTime)
+            {
+                currentFrame = FHDEHost.FrameTime;
+                currentTime = new VVVV.Packs.Time.Time(DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified), TimeZoneInfo.Local);
+            }
+
             FOutput.SliceCount = FDaylightSavingTime.SliceCount = 1;
-            var dtwz = new VVVV.Packs.Time.Time(DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified), TimeZoneInfo.Local);
+            var dtwz = currentTime.Value;
+            
             FOutput[0] = dtwz;
             FDaylightSavingTime[0] = dtwz.ZoneTime.IsDaylightSavingTime();
         }

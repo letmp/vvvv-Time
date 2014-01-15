@@ -45,7 +45,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Nodes">
-      <HintPath>..\..\..\vvvv-sdk\vvvv45\lib\nodes\plugins\VVVV.Nodes.dll</HintPath>
+      <HintPath>C:\apps\code\vvvv_45beta31.2_x86\lib\nodes\plugins\VVVV.Nodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="VVVV.Utils">
