@@ -36,7 +36,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    var dtwz = new Time(FInput[i].ZoneTime.Add(FTimeSpan[i]), FInput[i].TimeZone);
+                    Time dtwz = FInput[i] + FTimeSpan[i];
                     FOutput[i] = dtwz;
                     FSuccess[i] = true;
                 }
@@ -79,7 +79,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    var dtwz = new VVVV.Packs.Time.Time(FInput[i].ZoneTime.Subtract(FTimeSpan[i]), FInput[i].TimeZone);
+                    Time dtwz = FInput[i] - FTimeSpan[i];
                     FOutput[i] = dtwz;
                     FSuccess[i] = true;
                 }
@@ -158,7 +158,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    FTimeSpan[i] = FTimeSpan1[i].Add(FTimeSpan2[i]);
+                    FTimeSpan[i] = FTimeSpan1[i] + FTimeSpan2[i];
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
@@ -200,7 +200,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    FTimeSpan[i] = FTimeSpan1[i].Subtract(FTimeSpan2[i]);
+                    FTimeSpan[i] = FTimeSpan1[i] - FTimeSpan2[i];
                     FSuccess[i] = true;
                 }
                 catch (Exception e)

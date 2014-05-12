@@ -4,6 +4,7 @@ using System.ComponentModel;
 using VVVV.Nodes;
 using VVVV.Packs.Time;
 using VVVV.PluginInterfaces.V2;
+using VVVV.Nodes.Generic;
 using VVVV.Utils.Streams;
 
 namespace VVVV.Packs.Time.Nodes
@@ -56,14 +57,14 @@ namespace VVVV.Packs.Time.Nodes
     #region PluginInfo
     [PluginInfo(Name = "Zip", Category = "Time", Help = "Zip time", Tags = "", Author = "tmp")]
     #endregion PluginInfo
-    public class ZipTimeNode : ZipNode<IInStream<Time>>
+    public class ZipTimeNode : Zip<IInStream<Time>>
     {
     }
 
     #region PluginInfo
     [PluginInfo(Name = "Unzip", Category = "Time", Help = "Unzip time", Tags = "", Author = "tmp")]
     #endregion PluginInfo
-    public class UnZipTimeNode : UnzipNode<IInStream<Time>>
+    public class UnZipTimeNode : Unzip<IInStream<Time>>
     {
     }
 

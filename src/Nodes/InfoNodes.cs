@@ -40,7 +40,7 @@ namespace VVVV.Packs.Time.Nodes
             if (currentTime == null || currentFrame != FHDEHost.FrameTime)
             {
                 currentFrame = FHDEHost.FrameTime;
-                currentTime = new VVVV.Packs.Time.Time(DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified), TimeZoneInfo.Local);
+                currentTime = Time.CurrentTime();
             }
 
             FOutput.SliceCount = FDaylightSavingTime.SliceCount = 1;

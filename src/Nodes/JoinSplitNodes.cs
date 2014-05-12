@@ -62,10 +62,8 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    var dt = new DateTime(FYear[i], FMonth[i], FDay[i], FHour[i], FMinute[i], FSecond[i], FMilli[i]);
-                    TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById(FTimezone[i]);
-                    var dtwz = new Time(dt, tz);
-                    FOutput[i] = dtwz;
+                    
+                    FOutput[i] = Time.JoinTime(FYear[i], FMonth[i], FDay[i], FHour[i], FMinute[i], FSecond[i], FMilli[i],FTimezone[i]);
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
@@ -137,7 +135,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    FTimeStamp[i] = FInput[i].ZoneTime.Subtract(DateTime.MinValue).TotalDays;
+                    FTimeStamp[i] = Time.TimeStamp(FInput[i]);
                     FMilli[i] = FInput[i].ZoneTime.Millisecond;
                     FSecond[i] = FInput[i].ZoneTime.Second;
                     FMinute[i] = FInput[i].ZoneTime.Minute;

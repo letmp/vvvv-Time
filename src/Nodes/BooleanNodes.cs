@@ -29,8 +29,8 @@ namespace VVVV.Packs.Time.Nodes
             FOutput.SliceCount = SpreadMax;
             for (int i = 0; i < SpreadMax; i++)
             {
-                DateTime epsilonHigh = FInput2[i].UniversalTime.Add(FEpsilon[i]);
-                DateTime epsilonLow = FInput2[i].UniversalTime.Subtract(FEpsilon[i]);
+                DateTime epsilonHigh = FInput2[i].UniversalTime + FEpsilon[i];
+                DateTime epsilonLow = FInput2[i].UniversalTime - FEpsilon[i];
                 if (FInput1[i].UniversalTime.CompareTo(epsilonLow) >= 0 && FInput1[i].UniversalTime.CompareTo(epsilonHigh) <= 0)
                     FOutput[i] = true;
                 else FOutput[i] = false;

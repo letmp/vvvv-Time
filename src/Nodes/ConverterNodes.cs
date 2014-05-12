@@ -50,16 +50,14 @@ namespace VVVV.Packs.Time.Nodes
                 {
                     try
                     {
-                        var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimeZone[i]);
-                        DateTime dt = DateTime.ParseExact(FInput[i], FFormat[i], null);
-                        var dtwz = new Time(dt, tz);
+                        Time dtwz = Time.StringAsTime(FTimeZone[i], FInput[i], FFormat[i]);
                         FOutput[i] = dtwz;
                         FSuccess[i] = true;
                     }
                     catch (Exception e)
                     {
                         FLogger.Log(LogType.Debug, e.ToString());
-                        FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
+                        FOutput[i] = Time.MinUTCTime();
                         FSuccess[i] = false;
                     }
                 }
@@ -110,29 +108,20 @@ namespace VVVV.Packs.Time.Nodes
                 {
                     try
                     {
-                        var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimeZone[i]);
-                        DateTime dt = TimeFromUnixTimestamp(Convert.ToDouble(FInput[i]));
-                        var dtwz = new Time(dt, tz);
+                        var dtwz = Time.UnixStringAsTime(FTimeZone[i], FInput[i]);
                         FOutput[i] = dtwz;
                         FSuccess[i] = true;
                     }
                     catch (Exception e)
                     {
                         FLogger.Log(LogType.Debug, e.ToString());
-                        FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
+                        FOutput[i] = Time.MinUTCTime();
                         FSuccess[i] = false;
                     }
                 }
             }
         }
 
-        private static DateTime TimeFromUnixTimestamp(double unixTimestamp)
-        {
-            DateTime unixYear0 = new DateTime(1970, 1, 1);
-            double unixTimeStampInTicks = unixTimestamp * TimeSpan.TicksPerSecond;
-            DateTime dtUnix = new DateTime(unixYear0.Ticks +(long)unixTimeStampInTicks);
-            return dtUnix;
-        }
     }
 
 
@@ -174,16 +163,14 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimeZone[i]);
-                    DateTime dt = DateTime.FromOADate(FInput[i]);
-                    var dtwz = new Time(dt, tz);
+                    Time dtwz = Time.ValueAsTime(FTimeZone[i], FInput[i]);
                     FOutput[i] = dtwz;
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
                 {
                     FLogger.Log(LogType.Debug, e.ToString());
-                    FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
+                    FOutput[i] = Time.MinUTCTime();
                     FSuccess[i] = false;
                 }
             }
@@ -235,28 +222,20 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimeZone[i]);
-                    DateTime dt = TimeFromUnixTimestamp(FInput[i]);
-                    var dtwz = new Time(dt, tz);
+                    Time dtwz = Time.UnixValueAsTime(FTimeZone[i], FInput[i]);
                     FOutput[i] = dtwz;
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
                 {
                     FLogger.Log(LogType.Debug, e.ToString());
-                    FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
+                    FOutput[i] = Time.MinUTCTime();
                     FSuccess[i] = false;
                 }
             }
         }
 
-        private static DateTime TimeFromUnixTimestamp(int unixTimestamp)
-        {
-            DateTime unixYear0 = new DateTime(1970, 1, 1);
-            long unixTimeStampInTicks = unixTimestamp * TimeSpan.TicksPerSecond;
-            DateTime dtUnix = new DateTime(unixYear0.Ticks + unixTimeStampInTicks);
-            return dtUnix;
-        }
+       
     }
 
 
@@ -272,6 +251,9 @@ namespace VVVV.Packs.Time.Nodes
         #region fields & pins
         [Input("Decimal Time")]
         public ISpread<double> FDec;
+
+        [Input("Timezone", EnumName = "TimezoneEnum")]
+        public IDiffSpread<EnumEntry> FTimeZone;
 
         [Output("Time")]
         public ISpread<Time> FOutput;
@@ -298,38 +280,18 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    var dtwz = new VVVV.Packs.Time.Time(DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified), TimeZoneInfo.Local);
-
-                    int year = dtwz.ZoneTime.Year;
-                    int month = dtwz.ZoneTime.Month;
-                    int day = dtwz.ZoneTime.Day;
-
-                    var dt = TimeFromDecimal(year, month, day, FDec[i]);
-
-                    FOutput[i] = dtwz;
+                    FOutput[i] = Time.DecimalValueAsTime(FTimeZone[i],FDec[i]);
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
                 {
                     FLogger.Log(LogType.Debug, e.ToString());
-                    FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
+                    FOutput[i] = Time.MinUTCTime();
                     FSuccess[i] = false;
                 }
             }
         }
 
-        private static DateTime TimeFromDecimal(int year, int month, int day, double dec)
-        {
-            double hour = Math.Floor(dec);
-            double min = (dec - hour) * 60;
-            double minute = Math.Floor(min);
-            double sec = (min - minute) * 60;
-            double second = Math.Floor(sec);
-            double millis = Math.Floor((sec - second) * 1000); // 7 digits
-
-            var dt = new DateTime(year, month, day, ( int )hour, ( int )minute, ( int )second, ( int )millis);
-            return dt;
-        }
     }
 
 
@@ -385,33 +347,19 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    var dt = TimeFromDecimal(FYear[i], FMonth[i], FDay[i], FDec[i]);
-                    TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById(FTimeZone[i]);
-                    var dtwz = new Time(dt, tz);
-                    FOutput[i] = dtwz;
+                    FOutput[i] = Time.DecimalValueAsTimeAdvanced(FTimeZone[i],FYear[i],FMonth[i],FDay[i],FDec[i]);
                     FSuccess[i] = true;
                 }
                 catch (Exception e)
                 {
                     FLogger.Log(LogType.Debug, e.ToString());
-                    FOutput[i] = new Time(DateTime.MinValue, TimeZoneInfo.Utc);
+                    FOutput[i] = Time.MinUTCTime();
                     FSuccess[i] = false;
                 }
             }
         }
 
-        private static DateTime TimeFromDecimal(int year, int month, int day, double dec)
-        {
-            double hour = Math.Floor(dec);
-            double min = (dec - hour) * 60;
-            double minute = Math.Floor(min);
-            double sec =  (min - minute) * 60;
-            double second = Math.Floor(sec);
-            double millis = Math.Floor( (sec - second) * 1000 ); // 7 digits
-
-            var dt = new DateTime(year, month, day, (int)hour, (int)minute, (int)second, (int)millis);
-            return dt;
-        }
+        
     }
 
 
@@ -565,7 +513,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    FOutput[i] = (double) UnixTimestampFromDateTime(FInput[i].ZoneTime);
+                    FOutput[i] = Time.UnixTimestampFromTime(FInput[i]);
                 }
                 catch (Exception e)
                 {
@@ -575,11 +523,7 @@ namespace VVVV.Packs.Time.Nodes
             }
         }
 
-        public static double UnixTimestampFromDateTime(DateTime date)
-        {
-            TimeSpan span = date - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime();
-            return span.TotalSeconds;
-        }
+        
     }
 
 
@@ -612,7 +556,7 @@ namespace VVVV.Packs.Time.Nodes
             {
                 try
                 {
-                    FOutput[i] = UnixTimestampFromDateTime(FInput[i].ZoneTime).ToString();
+                    FOutput[i] = Time.UnixTimestampFromTime(FInput[i]).ToString();
                 }
                 catch (Exception e)
                 {
@@ -622,11 +566,6 @@ namespace VVVV.Packs.Time.Nodes
             }
         }
 
-        public static double UnixTimestampFromDateTime(DateTime date)
-        {
-            TimeSpan span = date - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime();
-            return span.TotalSeconds;
-        }
     }
 
 
@@ -659,9 +598,7 @@ namespace VVVV.Packs.Time.Nodes
             FOutput.SliceCount = SpreadMax;
             for (int i = 0; i < SpreadMax; i++)
             {
-                var tz = TimeZoneInfo.FindSystemTimeZoneById(FTimezone[i]);
-                var dtwz = new Time(DateTime.SpecifyKind(FInput[i].OtherZoneTime(tz), DateTimeKind.Unspecified), tz);
-                FOutput[i] = dtwz;
+                FOutput[i] = Time.ChangeTimezone(FInput[i],FTimezone[i]);
             }
         }
     }

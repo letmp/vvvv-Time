@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta31.2.dtd" >
-   <PATCH nodename="C:\dev\vvvv\vvvv-Time\countdown.v4p" systemname="countdown" filename="C:\Users\Anwender\Desktop\countdown.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta32.0.dtd" >
+   <PATCH nodename="D:\workspace\dev\packs\vvvv-Time\countdown.v4p" systemname="countdown" filename="C:\Users\Anwender\Desktop\countdown.v4p">
    <BOUNDS type="Window" left="9900" top="0" width="15465" height="15480">
    </BOUNDS>
    <NODE systemname="CurrentTime (Time)" filename="%VVVV%\packs\vvvv-Time\nodes\plugins\Time.dll" nodename="CurrentTime (Time)" componentmode="Hidden" id="4">
@@ -281,7 +281,7 @@
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="37" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8640" top="4065" width="975" height="390">
+   <BOUNDS type="Box" left="8640" top="4065" width="1290" height="375">
    </BOUNDS>
    <BOUNDS type="Node" left="8640" top="4065" width="0" height="0">
    </BOUNDS>
@@ -297,9 +297,9 @@
    <LINK srcnodeid="36" srcpinname="Day" dstnodeid="37" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="38" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="9705" top="4065" width="1110" height="390">
+   <BOUNDS type="Box" left="10005" top="4065" width="1110" height="390">
    </BOUNDS>
-   <BOUNDS type="Node" left="9705" top="4065" width="0" height="0">
+   <BOUNDS type="Node" left="10005" top="4065" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="hours">
    </PIN>
@@ -311,15 +311,15 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="36" srcpinname="Hour" dstnodeid="38" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="8880" y="3810">
+   <LINKPOINT x="8980" y="3810">
    </LINKPOINT>
-   <LINKPOINT x="9705" y="3810">
+   <LINKPOINT x="9905" y="3810">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="39" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="10890" top="4065" width="1395" height="390">
+   <BOUNDS type="Box" left="11190" top="4065" width="1395" height="390">
    </BOUNDS>
-   <BOUNDS type="Node" left="10890" top="4065" width="0" height="0">
+   <BOUNDS type="Node" left="11190" top="4065" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="minutes">
    </PIN>
@@ -331,15 +331,15 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="36" srcpinname="Minute" dstnodeid="39" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="9060" y="3810">
+   <LINKPOINT x="9160" y="3810">
    </LINKPOINT>
-   <LINKPOINT x="10890" y="3810">
+   <LINKPOINT x="11090" y="3810">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="40" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="12375" top="4065" width="1410" height="390">
+   <BOUNDS type="Box" left="12675" top="4065" width="1410" height="390">
    </BOUNDS>
-   <BOUNDS type="Node" left="12375" top="4065" width="0" height="0">
+   <BOUNDS type="Node" left="12675" top="4065" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="seconds">
    </PIN>
@@ -351,15 +351,15 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="36" srcpinname="Second" dstnodeid="40" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="9240" y="3810">
+   <LINKPOINT x="9340" y="3810">
    </LINKPOINT>
-   <LINKPOINT x="12375" y="3810">
+   <LINKPOINT x="12575" y="3810">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="41" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="14040" top="4065" width="885" height="270">
+   <BOUNDS type="Node" left="14190" top="4065" width="885" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="14040" top="4065" width="3510" height="360">
+   <BOUNDS type="Box" left="14190" top="4065" width="3510" height="360">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|until 2014 in your timezone|">
    </PIN>
@@ -524,4 +524,6 @@
    </LINK>
    <LINK srcnodeid="62" srcpinname="Output" dstnodeid="57" dstpinname="Input">
    </LINK>
+   <PACK Name="addonpack" Version="31.9.0">
+   </PACK>
    </PATCH>
