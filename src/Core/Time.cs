@@ -162,11 +162,6 @@ namespace VVVV.Packs.Time
             return span.TotalSeconds;
         }
 
-        public static implicit operator DateTime(Time time)
-        {
-            return time.ZoneTime;
-        }
-
         public static bool operator >(Time t1, Time t2)
         {
             return (t1.UniversalTime.CompareTo(t2.UniversalTime) > 0);
@@ -190,6 +185,26 @@ namespace VVVV.Packs.Time
         public static Time operator -(Time t1, TimeSpan ts2)
         {
             return (new Time(t1.ZoneTime.Subtract(ts2), t1.TimeZone));
+        }
+
+        public static implicit operator DateTime(Time time)
+        {
+            return time.UniversalTime;
+        }
+
+        /*public static implicit operator DateTime(Time time)
+        {
+            return time.ZoneTime;
+        }*/
+
+        public static implicit operator Time(DateTime time)
+        {
+            return new Time(DateTime.SpecifyKind(time, DateTimeKind.Unspecified), TimeZoneInfo.Local);
+        }
+
+        public override string ToString()
+        {
+            return this.LocalTime.ToString() + " " + this.TimeZone.Id;
         }
 
     }

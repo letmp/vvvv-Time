@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>VVVV.Pack.Time.Nodes</RootNamespace>
-    <AssemblyName>VVVV.Pack.Time.Nodes</AssemblyName>
+    <RootNamespace>VVVV.Packs.Time.Nodes</RootNamespace>
+    <AssemblyName>VVVV.Packs.Time.Nodes</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <OutputPath>..\..\build\$(Platform)\$(Configuration)\$(SolutionName)\nodes\plugins\</OutputPath>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
