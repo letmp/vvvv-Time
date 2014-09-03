@@ -204,7 +204,7 @@ namespace VVVV.Packs.Time
 
         public override string ToString()
         {
-            return this.LocalTime.ToString() + " " + this.TimeZone.Id;
+            return this.LocalTime.ToString() + " " + this.TimeZone.DisplayName;
         }
 
     }
