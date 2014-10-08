@@ -1,15 +1,18 @@
 using System;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace VVVV.Packs.Time
 {
-    [DataContract]
+    //[DataContract]
+    [Serializable]
+	[JsonConverter(typeof(TimeSerializer))]
     public struct Time
     {
-        [DataMember]
+        //[DataMember]
         private readonly DateTime utcDateTime;
         
-        [DataMember]
+        //[DataMember]
         private readonly TimeZoneInfo timeZone;
 
         public Time(DateTime dateTime, TimeZoneInfo timeZone)
